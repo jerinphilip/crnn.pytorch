@@ -37,17 +37,14 @@ class CRNNWrapper:
         return sim_pred
 
 
-model_path = './data/crnn.pth'
-model_path = '/ssd_scratch/cvit/jerin/acl-workspace/crnn.pth'
-img_path = './data/demo.png'
-alphabet = '0123456789abcdefghijklmnopqrstuvwxyz'
-
-
-
-
-wrapper = CRNNWrapper(model_path, alphabet)
-# image = Image.open(img_path).convert('L')
-image = cv2.imread(img_path)
-print(wrapper.predict(image))
+if __name__ == '__main__':
+    model_path = './data/crnn.pth'
+    model_path = '/ssd_scratch/cvit/jerin/acl-workspace/crnn.pth'
+    img_path = './data/demo.png'
+    alphabet = '0123456789abcdefghijklmnopqrstuvwxyz'
+    wrapper = CRNNWrapper(model_path, alphabet)
+    # image = Image.open(img_path).convert('L')
+    image = cv2.imread(img_path)
+    print(wrapper.predict(image))
 
 
