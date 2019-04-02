@@ -14,7 +14,7 @@ import os
 import utils
 import dataset
 
-import models.crnn as crnn
+import crnn.models.crnn as crnn
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--trainRoot', required=True, help='path to dataset')
