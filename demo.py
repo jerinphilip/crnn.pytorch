@@ -2,6 +2,7 @@ import torch
 from torch.autograd import Variable
 from PIL import Image
 import crnn
+import cv2
 
 
 class CRNNWrapper:
@@ -17,6 +18,8 @@ class CRNNWrapper:
         self.model.load_state_dict(torch.load(model_path))
 
     def predict(self, image):
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        image = Image.fromarray(image).convert('L')
         transformer = crnn.dataset.resizeNormalize((100, 32))
         image = transformer(image)
         if torch.cuda.is_available():
@@ -43,7 +46,8 @@ alphabet = '0123456789abcdefghijklmnopqrstuvwxyz'
 
 
 wrapper = CRNNWrapper(model_path, alphabet)
-image = Image.open(img_path).convert('L')
+# image = Image.open(img_path).convert('L')
+image = cv2.imread(img_path)
 print(wrapper.predict(image))
 
 
